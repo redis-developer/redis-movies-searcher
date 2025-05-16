@@ -1,49 +1,81 @@
-# Redis Movies Searcher
+# Building Context-Aware Applications with Java, Vector Searches, and Redis
 
-Searching for movies can be challenging. If you know the exact title of the movie you're looking for, chances are you'll find it easily. But what if you don't?
+Welcome to JNation 2025 👋🏻
 
-Often, we only have a faint recollection of what a movie is about, not a concrete description of its plot. This vague memory is how most of us naturally remember films, and it should be sufficient for finding what we're looking for.
- That's exactly what the Redis Movies Searcher does. It allows you to search for movies based on your imperfect memories and partial descriptions, making the process of finding that film you've been thinking about simpler and more intuitive.
+![jnation.png](images/jnation.png)
 
-![search.png](images/search.png)
+On behalf of the [JNation](https://jnation.pt) organizers, it's my genuine pleasure to be your instructor today. My name is [Ricardo Ferreira](https://talks.riferrei.com/bio), and I lead the developer relations team at [Redis](https://redis.io).
 
-This application allows you to search for movies using a combination of popular search techniques, such as FTS (Full-Text Search) and VSS (Vector Similarity Search). These capabilities are implemented using the [Redis Query Engine](https://redis.io/docs/latest/develop/interact/search-and-query/).
+In this workshop, you will learn how to design and develop applications that make use of vector databases to handle semantic searches. You will learn how to prepare the dataset for storage, how to process JSON documents and generate embeddings, how to index them into Redis, and how to implement searches and aggregations on top of it. You must be comfortable with [Java](https://www.java.com/en) and have a basic understanding of [Redis](https://redis.io/open-source).
 
-## Deploying locally
+## Part 1: Getting the application ready
 
-To deploy this application locally, you will need to have the following prerequisites:
+### Task 1: Installing dependencies
 
-* **[Docker](https://www.docker.com)**: to pull images and create the containers with the services.
+#### ⏰ Estimated time: **15 minutes**
 
-### Steps
+TBD.
 
-#### 1. Executing the services
+### Task 2: Building and running the application
 
-Go to the root directory from this project where the file `docker-compose.yml` is located and execute the following command:
+#### ⏰ Estimated time: **20 minutes**
 
-```bash
-docker compose up -d
-```
+TBD.
 
-Once the services finish starting up, you can access the game in the following URL:
+### Task 3: Importing the dataset into Redis
 
-http://localhost:8080/redis-movies-searcher
+#### ⏰ Estimated time: **5 minutes**
 
-To stop the services, execute the following command:
+TBD.
 
-```bash
-docker compose down
-```
+### Task 4: Finding and removing duplicated movies
 
-## Searching movies
+#### ⏰ Estimated time: **10 minutes**
 
-You can search for movies using the following approaches:
+TBD.
 
-* **Full-Text Search (FTS)**: This method allows you to search for movies using keywords or phrases that match either the title or actors from the movie. If you type `Apes`, you should see only movies that contain this keyword in the title. Such as `Planet of the Apes`. If you type `Tom Hanks`, you should see movies that have Tom Hanks in the cast. Such as `The Terminal` or `Philadelphia`.
-* **Vector Similarity Search (VSS)**: This method allows you to search for movies based on their similarity to a given vector. It is useful when you have a vague idea of what you're looking for, but not a specific title or keywords. If you type `Dude who teaches rock` you should see the movie `The School of Rock`.
+### Task 5: Fixing data glitches in the dataset
 
-Note that you don't get to choose whether you're using FTS or VSS. The application will automatically choose the best approach based on the query you typed. It will start searching using FTS, and if there aren't enough results, it will complement the search with VSS.
+#### ⏰ Estimated time: **10 minutes**
 
-## License
+TBD.
 
-Redis Movies Searcher is licensed under the **[MIT license](LICENSE)**.
+## Part 2: Processing the embeddings
+
+### Task 1: Persistence layer for the existing data
+
+#### ⏰ Estimated time: **10 minutes**
+
+TBD.
+
+### Task 2: Persistence layer for the generated data
+
+#### ⏰ Estimated time: **10 minutes**
+
+TBD.
+
+### Task 3: Implementing the embedding generation
+
+#### ⏰ Estimated time: **40 minutes**
+
+TBD.
+
+## Part 3: Implementing the Searches
+
+### Task 1: Implementing the Full-Text Search
+
+#### ⏰ Estimated time: **15 minutes**
+
+TBD.
+
+### Task 2: Implementing the Vector Similarity Search
+
+#### ⏰ Estimated time: **30 minutes**
+
+TBD.
+
+### Task 3: Optimizing the Vector Similarity Search
+
+#### ⏰ Estimated time: **15 minutes**
+
+TBD.
