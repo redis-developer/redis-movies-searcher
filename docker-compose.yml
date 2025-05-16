@@ -3,7 +3,7 @@ services:
   rhs-frontend:
     container_name: rms-frontend
     hostname: rms-frontend
-    image: nginx:latest
+    image: nginx:1.27.5
     depends_on:
       - rms-backend
     volumes:
