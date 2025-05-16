@@ -1,6 +1,7 @@
 package io.redis.movies.searcher.core.domain;
 
 public enum ResultType {
+    NONE("None"),
     FTS("Full-Text Search"),
     VSS("Vector Similarity Search"),
     HYBRID("Hybrid Search");

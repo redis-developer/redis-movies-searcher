@@ -3,9 +3,7 @@ services:
   rhs-frontend:
     container_name: rms-frontend
     hostname: rms-frontend
-    image: nginx:latest
-    depends_on:
-      - rms-backend
+    image: nginx:1.27.5
     volumes:
       - ./app/:/usr/share/nginx/html
       - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf
@@ -21,26 +19,6 @@ services:
       start_period: 5s
       timeout: 5s
     command: [ "/bin/sh", "-c", "chmod +x /docker-entrypoint.d/local-js.sh && /docker-entrypoint.sh nginx -g 'daemon off;'" ]
-
-  rms-backend:
-    container_name: rms-backend
-    hostname: rms-backend
-    image: 'rms-backend:latest'
-    depends_on:
-      - redis-database
-    build:
-      context: .
-    ports:
-      - "8081:8081"
-    environment:
-      REDIS_HOST: redis-database
-      REDIS_PORT: 6379
-    healthcheck:
-      test: "curl --fail --silent http://localhost:8081/actuator/health | grep -q '\"status\":\"UP\"' || exit 1"
-      interval: 10s
-      retries: 5
-      start_period: 5s
-      timeout: 5s
 
   redis-database:
     container_name: redis-database
