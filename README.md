@@ -79,3 +79,29 @@ TBD.
 #### ⏰ Estimated time: **15 minutes**
 
 TBD.
+
+## Part 4: Moving the dataset to the cloud
+
+### Task 1: Create an account on Redis Cloud
+
+#### ⏰ Estimated time: **5 minutes**
+
+TBD.
+
+### Task 2: Create an 30MB free database
+
+#### ⏰ Estimated time: **5 minutes**
+
+TBD.
+
+### Task 3: Replicate the entire dataset
+
+#### ⏰ Estimated time: **10 minutes**
+
+TBD.
+
+### Task 4: Point the application to the cloud
+
+#### ⏰ Estimated time: **10 minutes**
+
+TBD.
