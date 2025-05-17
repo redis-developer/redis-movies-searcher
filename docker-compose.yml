@@ -36,3 +36,21 @@ services:
       retries: 5
       start_period: 5s
       timeout: 5s
+
+  redis-insight:
+    container_name: redis-insight
+    hostname: redis-insight
+    image: redis/redisinsight:2.68
+    depends_on:
+      - redis-database
+    environment:
+      RI_REDIS_HOST: "redis-database"
+      RI_REDIS_PORT: "6379"
+    ports:
+      - "5540:5540"
+    healthcheck:
+      test: ["CMD", "sh", "-c", "wget -q -O- http://redis-insight:5540/api/health | grep -q '\"status\":\"up\"'"]
+      interval: 10s
+      retries: 5
+      start_period: 5s
+      timeout: 5s
