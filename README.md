@@ -16,7 +16,12 @@ The goal of this section is to get the moving parts from this project ready to b
 
 #### ⏰ Estimated time: **15 minutes**
 
-TBD.
+You need to install the following dependencies:
+
+- [JDK 21](https://docs.aws.amazon.com/corretto/latest/corretto-21-ug/downloads-list.html)
+- [Maven 3.9.9](https://maven.apache.org/download.cgi)
+- [Docker](https://www.docker.com/get-started)
+- [Redis Insight](https://redis.io/docs/latest/operate/redisinsight/install)
 
 ### Task 2: Building and running the application
 
