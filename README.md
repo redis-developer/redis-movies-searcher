@@ -66,7 +66,7 @@ TBD.
 
 ## Part 3: Implementing the Searches
 
-In this section, you will implement the search functionality in the application. It will allow users to search for movies using details of the movies like title and actors, as well as search based on the plot. You will implement the code to optimize the searches for maximum efficiency, combining different strategies and caching computationally expensive operations when necessary.
+In this section, you will implement the search functionality in the application. It will allow users to search for movies using details of the movies like title and actors, as well as search based on the plot. You will implement the code to optimize the searches for maximum efficiency, combining different search strategies and caching computationally expensive operations when necessary.
 
 ### Task 1: Implementing the Full-Text Search
 
