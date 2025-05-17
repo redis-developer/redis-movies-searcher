@@ -8,7 +8,9 @@ On behalf of the [JNation](https://jnation.pt) organizers, it's my genuine pleas
 
 In this workshop, you will learn how to design and develop an application that makes use of vector databases to handle semantic search. You will learn how to prepare the dataset for storage, how to process JSON documents and generate embeddings, how to index them into Redis, and how to implement searches and aggregations on top of it. You must be comfortable with [Java](https://www.java.com/en) and have a basic understanding of [Redis](https://redis.io/open-source).
 
-## Part 1: Getting the application ready
+## Part 1: Getting everything ready
+
+The goal of this section is to get the moving parts from this project ready to be used. You will take care of the steps necessary to get the application up and running. This means you will make sure the application dependencies are ready, build the code from scratch, and make sure the dataset the application will handle is in a good shape.
 
 ### Task 1: Installing dependencies
 
@@ -40,7 +42,9 @@ TBD.
 
 TBD.
 
-## Part 2: Processing the embeddings
+## Part 2: Preparing the dataset for searches
+
+In this section, you will implement a functionality that will prepare the dataset to be used for searches. This means you will need to process the existing dataset in such a way that creates the building blocks required for the searches, such as schemas, indexes, and embeddings.
 
 ### Task 1: Persistence layer for the existing data
 
@@ -62,6 +66,8 @@ TBD.
 
 ## Part 3: Implementing the Searches
 
+In this section, you will implement the search functionality in the application. This includes allowing users to search for movies using details of the movies like title and actors, as well as search based on the plot. You will implement the code to optimize the searches for maximum efficiency, combining different search strategies and caching computationally expensive operations when necessary.
+
 ### Task 1: Implementing the Full-Text Search
 
 #### ⏰ Estimated time: **15 minutes**
@@ -81,6 +87,8 @@ TBD.
 TBD.
 
 ## Part 4: Moving the dataset to the cloud
+
+In this section, you will replace your local database with one running in the cloud. You will replicate the entire data from one database to another and change the application to point to the new database. By the end, you should be able to use the application just like before with no breaking changes.
 
 ### Task 1: Create an account on Redis Cloud
 
