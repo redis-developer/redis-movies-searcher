@@ -58,7 +58,7 @@ TBD.
 
 TBD.
 
-### Task 3: Implementing the embedding generation
+### Task 3: Implementing the dataset processing
 
 #### ⏰ Estimated time: **40 minutes**
 
