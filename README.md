@@ -10,7 +10,7 @@ In this workshop, you will learn how to design and develop an application that m
 
 ## Part 1: Getting everything ready
 
-The goal of this section is to get the moving parts from this project ready to be used. You will take care of the steps necessary to get the application up and running. This means you will make sure the application dependencies are ready, build the code from scratch, and make sure the dataset the application will handle is in a good shape.
+The goal of this section is to get the moving parts from this project ready to be used. You will take care of the steps necessary to get the application running. This means you will make sure the application dependencies are ready, build the code from scratch, and make sure the dataset the application will handle is in a good shape.
 
 ### Task 1: Installing dependencies
 
