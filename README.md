@@ -24,6 +24,8 @@ This workshop requires the following dependencies to be installed on your machin
 - [Redis Insight](https://redis.io/docs/latest/operate/redisinsight/install)
 - [RIOT](https://redis.github.io/riot/#_install)
 
+It is recommended to use IDEs like [VS Code](https://code.visualstudio.com), [IntelliJ IDEA](https://www.jetbrains.com/idea/) or [Eclipse](https://www.eclipse.org/downloads/packages/) to work with the code. As a Java developer, you can use any IDE you feel comfortable with. Make sure to have one installed before proceeding.
+
 ### Task 2: Building and running the application
 
 #### ⏰ Estimated time: **20 minutes**
