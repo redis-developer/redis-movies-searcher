@@ -44,7 +44,7 @@ TBD.
 
 ## Part 2: Preparing the dataset for searches
 
-In this section, you will implement a functionality that will prepare the dataset to be used for searches. This means you will need to process the existing dataset in such a way that creates the building blocks required for the searches, such as schemas, indexes, and embeddings.
+In this section, you will implement a functionality that will prepare the dataset for searches. You will write code in Java to process the existing dataset in such a way that creates the building blocks required for the searches, such as schemas, indexes, and embeddings.
 
 ### Task 1: Persistence layer for the existing data
 
