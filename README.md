@@ -90,6 +90,10 @@ FT.CREATE imported_movies_index ON JSON PREFIX 1 "import:movie:" SCHEMA
 
 ![ri-create-idx.png](images/ri-create-idx.png)
 
+```bash
+FT.INFO 'imported_movies_index'
+```
+
 ![ri-inspect-idx.png](images/ri-inspect-idx.png)
 
 ![ri-search-matrix.png](images/ri-search-matrix.png)
@@ -107,7 +111,11 @@ EVAL "local result = redis.call('FT.AGGREGATE', 'imported_movies_index', '*', 'L
 #### ⏰ Estimated time: **10 minutes**
 
 ```bash
-JSON.SET import:movie:3352 $.actors '["Ben Affleck", "Gal Gadot", "Jason Momoa", "Henry Cavill", "Ezra Miller"]'
+FT.SEARCH imported_movies_index "@title:\"Justice League\""
+```
+
+```bash
+JSON.SET import:movie:1321 $.actors '["Ben Affleck", "Gal Gadot", "Jason Momoa", "Henry Cavill", "Ezra Miller"]'
 ```
 
 ## Part 2: Preparing the dataset for searches
@@ -178,7 +186,6 @@ import com.redis.om.spring.annotations.*;
 import com.redis.om.spring.indexing.DistanceMetric;
 import com.redis.om.spring.indexing.VectorType;
 import io.redis.movies.searcher.data.domain.MovieData;
-import org.springframework.ai.openai.api.OpenAiApi;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.redis.core.RedisHash;
 import redis.clients.jedis.search.schemafields.VectorField;
@@ -457,6 +464,18 @@ public class RedisMoviesSearcher {
     }
 
 }
+```
+
+```bash
+2025-05-18T11:25:25.358-04:00  INFO 59172 --- [           main] i.r.m.s.core.service.MovieService        : Starting processing the movies available at Redis...
+2025-05-18T11:25:25.371-04:00  INFO 59172 --- [           main] i.r.m.s.core.service.MovieService        : Found 4527 records with the key prefix 'import:movie'
+2025-05-18T11:25:25.673-04:00  INFO 59172 --- [           main] i.r.m.s.core.service.MovieService        : Loaded 4527 records into memory. Saving them all...
+2025-05-18T11:25:38.775-04:00  INFO 59172 --- [pool-1-thread-1] i.r.m.s.core.service.MovieService        : Saved 4527/4527 movies (100.0%)
+2025-05-18T11:25:38.776-04:00  INFO 59172 --- [           main] i.r.m.s.core.service.MovieService        : Processing complete: 4527 source keys loaded, saved 4527 records in 13.40 seconds
+```
+
+```bash
+FT.DROPINDEX 'imported_movies_index' DD
 ```
 
 ## Part 3: Implementing the Searches
