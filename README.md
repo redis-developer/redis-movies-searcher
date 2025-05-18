@@ -30,7 +30,21 @@ It is recommended to use IDEs like [VS Code](https://code.visualstudio.com), [In
 
 #### ⏰ Estimated time: **20 minutes**
 
-TBD.
+```bash
+mvn clean package
+```
+
+```bash
+docker compose up -d
+```
+
+```bash
+mvn spring-boot:run
+```
+
+http://localhost:8080/redis-movies-searcher
+
+![app-mvp.png](images/app-mvp.png)
 
 ### Task 3: Importing the dataset into Redis
 
