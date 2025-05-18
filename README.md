@@ -858,7 +858,7 @@ https://redis.io/try-free
 ```bash
 riot replicate \
   redis://localhost:6379 \
-  redis://default:paswword@public-endpoint
+  redis://default:password@public-endpoint
 ```
 
 ### Task 4: Point the application to the cloud
