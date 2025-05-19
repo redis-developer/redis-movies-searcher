@@ -161,13 +161,19 @@ EVAL "local result = redis.call('FT.AGGREGATE', 'imported_movies_index', '*', 'L
 
 #### ⏰ Estimated time: **10 minutes**
 
+The dataset you imported may have a few data glitches to fix. For example, some movies may have a `null` value for the `actors` field. One good example is the movie `Justice League`. To fix it, the first thing you need is to find which key this movie belong to. You can search for movies with this title, using the following query:
+
 ```bash
 FT.SEARCH imported_movies_index "@title:\"Justice League\""
 ```
 
+You may see more than one movie with this title. Select the one from `2017`. To include the actors into the movie, you can use the following command:
+
 ```bash
 JSON.SET import:movie:1321 $.actors '["Ben Affleck", "Gal Gadot", "Jason Momoa", "Henry Cavill", "Ezra Miller"]'
 ```
+
+Like this glitch, theer may be other. Please spend some time finding fields with no values, or perhaps with wrong values. Your instructor will likely explain how to do this efficiently using [Redis Copilot](https://redis.io/docs/latest/develop/tools/insight/copilot-faq/), which is a feature from Redis Insight.
 
 ## Part 2: Preparing the dataset for searches
 
