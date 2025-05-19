@@ -30,25 +30,41 @@ It is recommended to use IDEs like [VS Code](https://code.visualstudio.com), [In
 
 #### ⏰ Estimated time: **20 minutes**
 
+Your first step is cloning the repository and building the application. Make sure to clone the repository with the branch `jnation-2025-workshop`:
+
 ```bash
 git clone https://github.com/redis-developer/redis-movies-searcher.git -b jnation-2025-workshop
 ```
+
+Once you have a copy of the repository locally, you can open it in your favorite IDE. The project is a standard Maven project, so you can import it as a Maven project. Go ahead and run a Maven build so the dependencies are downloaded and you can verify if everything is working as expected. Please note that depending of the internet connection, this may take a while to complete.
 
 ```bash
 mvn clean package
 ```
 
+Before running the application, you need to start Redis and Redis Insight. You can do this by running the following command:
+
 ```bash
 docker compose up -d
 ```
+
+Now execute the application with the following command:
 
 ```bash
 mvn spring-boot:run
 ```
 
+The application will start on port 8080. You can access it by opening your browser and navigating to:
+
 http://localhost:8080/redis-movies-searcher
 
+You should see the following screen:
+
 ![app-mvp.png](images/app-mvp.png)
+
+Now open Redis Insight and connect to the Redis instance running on your machine. You can do this by clicking on the "Add Redis Database" button and entering the following information:
+
+redis://default@127.0.0.1:6379
 
 ![ri-start.png](images/ri-start.png)
 
@@ -467,11 +483,11 @@ public class RedisMoviesSearcher {
 ```
 
 ```bash
-2025-05-18T11:25:25.358-04:00  INFO 59172 --- [           main] i.r.m.s.core.service.MovieService        : Starting processing the movies available at Redis...
-2025-05-18T11:25:25.371-04:00  INFO 59172 --- [           main] i.r.m.s.core.service.MovieService        : Found 4527 records with the key prefix 'import:movie'
-2025-05-18T11:25:25.673-04:00  INFO 59172 --- [           main] i.r.m.s.core.service.MovieService        : Loaded 4527 records into memory. Saving them all...
-2025-05-18T11:25:38.775-04:00  INFO 59172 --- [pool-1-thread-1] i.r.m.s.core.service.MovieService        : Saved 4527/4527 movies (100.0%)
-2025-05-18T11:25:38.776-04:00  INFO 59172 --- [           main] i.r.m.s.core.service.MovieService        : Processing complete: 4527 source keys loaded, saved 4527 records in 13.40 seconds
+Starting processing the movies available at Redis...
+Found 4527 records with the key prefix 'import:movie'
+Loaded 4527 records into memory. Saving them all...
+Saved 4527/4527 movies (100.0%)
+Processing complete: 4527 source keys loaded, saved 4527 records in 13.40 seconds
 ```
 
 ```bash
