@@ -42,7 +42,7 @@ Once you have a copy of the repository locally, you can open it in your favorite
 mvn clean package
 ```
 
-Before running the application, you need to start Redis and Redis Insight. You can do this by running the following command:
+Before running the application, you need to start **Redis** and **Redis Insight**. You can do this by running the following command:
 
 ```bash
 docker compose up -d
@@ -54,7 +54,7 @@ Now execute the application with the following command:
 mvn spring-boot:run
 ```
 
-The application will start on port 8080. You can access it by opening your browser and navigating to:
+The application will start on port `8080`. You can access it by opening your browser and navigating to:
 
 http://localhost:8080/redis-movies-searcher
 
@@ -62,11 +62,19 @@ You should see the following screen:
 
 ![app-mvp.png](images/app-mvp.png)
 
+You can type anything you want in the search box. You should see the same result coming back. This is the MVP of the application, and the result is currently hard-coded.
+
 Now open Redis Insight and connect to the Redis instance running on your machine. You can do this by clicking on the "Add Redis Database" button and entering the following information:
 
-redis://default@127.0.0.1:6379
+➡️ `redis://default@127.0.0.1:6379`
 
 ![ri-start.png](images/ri-start.png)
+
+If you don't want to use Redis Insight running locally on your machine, you can access the one running on Docker. You can access it by opening your browser and navigating to:
+
+http://localhost:5540
+
+This browser version of Redis Insight is limited in capabilities. I would highly recommend you to use the desktop version of Redis Insight.
 
 ### Task 3: Importing the dataset into Redis
 
