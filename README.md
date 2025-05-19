@@ -84,7 +84,7 @@ The dataset you will be using is a collection of movies. It is a JSON file that 
 cd ${project_dir}/data
 ```
 
-To import the dataset into Redis, you can use the `riot` command line tool. This tool is used to import and export data from Redis. You can use the following command to import the dataset into Redis:
+To import the dataset into Redis, you can use the [RIOT](https://redis.github.io/riot/) command line tool. This tool is used to import and export data from Redis. You can use the following command to import the dataset into Redis:
 
 ```bash
 riot file-import \
