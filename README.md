@@ -64,7 +64,7 @@ You should see the following screen:
 
 You can type anything you want in the search box. You should see the same result coming back. This is the MVP of the application, and the result is currently hard-coded.
 
-Now open Redis Insight and connect to the Redis instance running on your machine. You can do this by clicking on the **Add Redis Database** button and entering the following information: `redis://default@localhost:6379`
+Now open Redis Insight and connect to the Redis instance running on your machine. You can do this by clicking on the **Add Redis Database** button and entering the following information: `redis://default@127.0.0.1:6379`
 
 ![ri-start.png](images/ri-start.png)
 
@@ -78,9 +78,13 @@ This browser version of Redis Insight is limited in capabilities. I would highly
 
 #### ⏰ Estimated time: **5 minutes**
 
+The dataset you will be using is a collection of movies. It is a JSON file that contains the information we need about the movies, such as title, year, plot, release date, rating, and actors. The dataset is located in the `data` folder of the project.
+
 ```bash
 cd ${project_dir}/data
 ```
+
+To import the dataset into Redis, you can use the `riot` command line tool. This tool is used to import and export data from Redis. You can use the following command to import the dataset into Redis:
 
 ```bash
 riot file-import \
@@ -93,11 +97,15 @@ riot file-import \
     movies.json json.set --keyspace import:movie --key id
 ```
 
+There are lots of important information going on with this simple command. Your instructor will explain the details of this command during the workshop. For now, just run it and make sure it works as expected. If you open Redis Insight right now, you should be able to see the movies stored at Redis.
+
 ![ri-ds-loaded.png](images/ri-ds-loaded.png)
 
 ### Task 4: Finding and removing duplicated movies
 
 #### ⏰ Estimated time: **10 minutes**
+
+The dataset you just imported into Redis contains some duplicated movies. You need to remove the duplicates from the dataset. You can do this easily by creating an index on the dataset and then use [Redis Query Engine](https://redis.io/docs/latest/develop/interact/search-and-query) commands to find the duplicates. The command below creates an index called `imported_movies_index` that will manage any keys that start with the prefix `import:movie:`.
 
 ```bash
 FT.CREATE imported_movies_index ON JSON PREFIX 1 "import:movie:" SCHEMA
@@ -110,7 +118,13 @@ FT.CREATE imported_movies_index ON JSON PREFIX 1 "import:movie:" SCHEMA
   $.id AS id NUMERIC SORTABLE UNF
 ```
 
+To create this index, go to Redis Insight, and access the Workbench tab. Then, paste the command into the query editor and click on the **Run** button. You should see the index being created.
+
+```bash
+
 ![ri-create-idx.png](images/ri-create-idx.png)
+
+At any time, you can verify the details of the index by running the command below. This will show you the details of the index, including the fields and their types.
 
 ```bash
 FT.INFO 'imported_movies_index'
@@ -118,9 +132,26 @@ FT.INFO 'imported_movies_index'
 
 ![ri-inspect-idx.png](images/ri-inspect-idx.png)
 
+One cool aspect of working with indexed datasets with Redis Insight is the ability to search for keys using the UI. Go back to the the Browser tab and select the option `Search by Values of Keys`. Then select the index you created in the drop down box near it. In the search box, try to search for all movies that contain the word `Matrix` for example.
+
 ![ri-search-matrix.png](images/ri-search-matrix.png)
 
+Now that you know the index is working as expected, you can find the duplicates. Go to the Workbench tab and run the following command:
+
+```bash
+FT.AGGREGATE imported_movies_index "*"
+  LOAD 2 @title @id
+  GROUPBY 1 @title
+  REDUCE COUNT 0 AS count
+  REDUCE TOLIST 1 @id AS ids
+  FILTER "@count > 1"
+```
+
+This is an aggregation command that will group the movies by title and count the number of movies with the same title. It will also return the IDs of the movies with the same title. You should see a result similar to this:
+
 ![ri-dupl-movies.png](images/ri-dupl-movies.png)
+
+To remove the duplicates efficiently, you are going to leverage another powerful feature of Redis: [Lua scripting](https://redis.io/docs/latest/develop/interact/programmability/eval-intro/). You can use the following Lua script to remove the duplicates from the dataset. This script will iterate over the results of the aggregation command use before and delete the duplicates from Redis.
 
 ```bash
 EVAL "local result = redis.call('FT.AGGREGATE', 'imported_movies_index', '*', 'LOAD', '2', '@title', '@id', 'GROUPBY', '1', '@title', 'REDUCE', 'COUNT', '0', 'AS', 'count', 'REDUCE', 'TOLIST', '1', '@id', 'AS', 'ids', 'FILTER', '@count > 1') local deletion_count = 0 local index = 2 while index <= #result do local group = result[index] local title_idx, ids_idx = nil, nil for i = 1, #group, 2 do if group[i] == 'title' then title_idx = i elseif group[i] == 'ids' then ids_idx = i end end if ids_idx then local ids_list = group[ids_idx + 1] for i = 2, #ids_list do local key_name = 'import:movie:' .. ids_list[i] redis.call('DEL', key_name) deletion_count = deletion_count + 1 end end index = index + 1 end return 'Deleted ' .. deletion_count .. ' duplicate movies'" 0
