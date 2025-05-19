@@ -961,7 +961,7 @@ It usually takes about 30 seconds for your database to be created. Once this pro
 
 ![rc-connect-1.png](images/rc-connect-1.png)
 
-With the Redis CLI option, you can copy the command to connect with your database using the Redis CLI. This is not what you are going to do though. What we need from this option is the connection details. Copy the Redis URL from the prompt. The Redis URL has the following sintax:
+With the **Redis CLI** option, you can copy the command to connect with your database using the Redis CLI. This is not what you are going to do though. What you need from this option is the connection details. Copy the Redis URL from the prompt. The Redis URL has the following sintax:
 
 ```bash
 redis://username:password@host:port
