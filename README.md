@@ -957,7 +957,17 @@ Make sure the database size selected is 30MB. This is the maximum size for the f
 
 ![rc-confirm.png](images/rc-confirm.png)
 
+It usually takes about 30 seconds for your database to be created. Once this process finishes, you can start using your database. In the **General** section, you will find a button named **Connect** that will bring you to the connectivity options. Select the Redis CLI option.
+
 ![rc-connect-1.png](images/rc-connect-1.png)
+
+With the Redis CLI option, you can copy the command to connect with your database using the Redis CLI. This is not what you are going to do though. What we need from this option is the connection details. Copy the Redis URL from the prompt. The Redis URL has the following sintax:
+
+```bash
+redis://username:password@host:port
+```
+
+Make sure to click in the eyes icon before copying the Redis URL. It will allow you to copy the password without the masking.
 
 ![rc-connect-2.png](images/rc-connect-2.png)
 
