@@ -363,7 +363,7 @@ public class RedisMoviesSearcher {
 
 #### ⏰ Estimated time: **40 minutes**
 
-Now that you have the persistence layers properly implemented, you can start the implementation of the dataset processing. You are going to write code now to load all the movies currently stored at Redis as JSON documents in-memory. Then, you are going to save them with a new domain entity layer to generated the movies as Hashes and with their respective embeddings. Your instrutor will explain the differences between JSON and Hashes data types at Redis.
+Now that you have the persistence layers properly implemented, you can start the implementation of the dataset processing. You are going to write code now to load all the movies currently stored at Redis as JSON documents in-memory. Then, you are going to save them with a new domain entity layer to generated the movies as Hashes and with their respective embeddings. Your instructor will explain the differences between [JSON](https://redis.io/docs/latest/develop/data-types/json/) and [Hashes](https://redis.io/docs/latest/develop/data-types/hashes/) data types at Redis.
 
 Create a new Java class called `MovieService` in the package `io.redis.movies.searcher.core.service`. This class will be responsible for processing the movies.
 
