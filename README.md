@@ -623,7 +623,7 @@ public class SearchService {
 }
 ```
 
-With this implementation, you are going to be able to search for movies by their title or by their actors. The search will return a list of movies that match the search criteria. The search is done using the `EntityStream` class, which is part of the Redis OM for Java library. This class allows you to perform searches on Redis data using a fluent API. Your instructor will explain more details about this powerful API. Execute the application and try to search for movies.
+With this implementation, you are going to be able to search for movies by their title or by their actors. The search will return a list of movies that match the search criteria. The search is done using the `EntityStream` class, which is part of the Redis OM for Java library. This class allows you to perform searches on Redis data using a fluent API. Your instructor will explain more details about this powerful API. Go ahead and execute the application. You can search for movies by their title or by their actors. For example, you can search for movies with the title `Matrix` or with the actor `Keanu Reeves`. You should see the results being displayed on the screen.
 
 ### Task 2: Implementing the Vector Similarity Search
 
@@ -742,7 +742,7 @@ public class SearchService {
 }
 ```
 
-Note that we only execute the VSS search if the FTS search does not return enough results. This is done to optimize the search process and avoid unnecessary computations. The VSS search is done using the `knn()` operation, which is part of the Redis Query Engine implementation. This operation allows you to perform a k-nearest neighbors search on the vector field. Execute the application and try to search for movies.
+Note that we only execute the VSS search whenever the FTS search does not return enough results. This is done to optimize the search process as FTS searches are faster than VSS ones. The VSS search is done using the `knn()` operation, which is part of the Redis Query Engine implementation. This operation allows you to perform a [K-Nearest Neighbors](https://redis.io/docs/latest/develop/interact/search-and-query/query/vector-search/) search on the vector field.
 
 ### Task 3: Optimizing the Vector Similarity Search
 
