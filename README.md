@@ -553,7 +553,7 @@ Saved 4527/4527 movies (100.0%)
 Processing complete: 4527 source keys loaded, saved 4527 records in 13.40 seconds
 ```
 
-From this point on, we have the movies saved as Hashes into Redis. Therefore, we don't need anymore the copies of the movies stored as JSON documents. You can remove them by running the command below. Use Redis Insight to execute this command. It will delete the index `imported_movies_index` and all the JSON documents that were created with the prefix `import:movie:`.
+From this point on, we have the movies saved as Hashes into Redis. Therefore, we don't need anymore the copies of the movies stored as JSON. You can remove them by running the command below. Use Redis Insight to execute this command. It will delete the index `imported_movies_index` and all the JSON documents that were created with the prefix `import:movie:`.
 
 ```bash
 FT.DROPINDEX 'imported_movies_index' DD
