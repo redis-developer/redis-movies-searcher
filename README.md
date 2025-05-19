@@ -935,17 +935,25 @@ If you don't have one already, you must create a new account with Redis Cloud. R
 
 https://redis.io/try-free
 
-You don't need to register a credit card to create your account. YOu can enroll using your GitHub and Google accounts. Once you create your account, you will be redirected to the Redis Cloud console. 
+You don't need to register a credit card to create your account. You can enroll using your GitHub and Google accounts. Once you create your account, you will be redirected to the Redis Cloud console. 
 
 ![rc-welcome.png](images/rc-welcome.png)
+
+To get things started, click in the **New Database** button. This will take you to the database creation page.
 
 ### Task 2: Create an 30MB free database
 
 #### ⏰ Estimated time: **5 minutes**
 
+For this workshop, you will create a 30MB free database. This is enough to store the movies dataset. Moroever, this option is free of charge. This option is ideal for developers trying Redis in the cloud. The secret to leverage this free option is the selection of the subscription. Make sure to select the **Essentials** subscription.
+
 ![rc-subscription.png](images/rc-subscription.png)
 
+Once you select the subscription, you will be able to select the cloud provider and the region. You can select any of the available options. The database name is not important, but make sure to select a name that is easy to remember.
+
 ![rc-db-details.png](images/rc-db-details.png)
+
+Make sure the database size selected is 30MB. This is the maximum size for the free plan. Once you select the database size, click on the **Create Database** button. This will take you to the database details page.
 
 ![rc-confirm.png](images/rc-confirm.png)
 
