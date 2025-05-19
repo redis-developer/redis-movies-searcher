@@ -503,6 +503,8 @@ public class MovieService {
 }
 ```
 
+As you can see, the implementation is using a parallel stream to load the movies from Redis. This is done to optimize the loading process. The movies are then saved in batches of 500 records. The implementation also uses an executor service to manage the threads used for saving the movies. To use this code properly, you need to call it from the main class. Edit the Java class `io.redis.movies.searcher.RedisMoviesSearcher.java` and update it as follows:
+
 ```java
 package io.redis.movies.searcher;
 
@@ -541,6 +543,8 @@ public class RedisMoviesSearcher {
 }
 ```
 
+If you have the application currently running, please stop its execution and run it again. Once the application finish processing the movies, you should see an output similar to this:
+
 ```bash
 Starting processing the movies available at Redis...
 Found 4527 records with the key prefix 'import:movie'
@@ -548,6 +552,8 @@ Loaded 4527 records into memory. Saving them all...
 Saved 4527/4527 movies (100.0%)
 Processing complete: 4527 source keys loaded, saved 4527 records in 13.40 seconds
 ```
+
+From this point on, we have all the movies saved as Hashes into Redis. Therefore, we don't need anymore the copies of the movies stored as JSON documents. You can remove them by running the command below. Use Redis Insight to execute this command. It will delete the index `imported_movies_index` and all the JSON documents that were created with the prefix `import:movie:`.
 
 ```bash
 FT.DROPINDEX 'imported_movies_index' DD
