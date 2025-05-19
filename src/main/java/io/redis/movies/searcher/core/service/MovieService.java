@@ -17,7 +17,6 @@ import java.util.*;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
@@ -31,7 +30,8 @@ public class MovieService {
     private final RedisTemplate redisTemplate;
 
     public MovieService(MovieRepository movieRepository,
-                        MovieDataRepository movieDataRepository, RedisTemplate redisTemplate) {
+                        MovieDataRepository movieDataRepository,
+                        RedisTemplate redisTemplate) {
         this.movieRepository = movieRepository;
         this.movieDataRepository = movieDataRepository;
         this.redisTemplate = redisTemplate;
@@ -40,7 +40,6 @@ public class MovieService {
     public void importMovies() {
         log.info("Starting processing the movies available at Redis...");
 
-        // Collect all the keys to be imported...
         Set<String> allMovieKeys = new HashSet<>();
         try (Cursor<byte[]> cursor = redisTemplate.getConnectionFactory().getConnection()
                 .scan(ScanOptions.scanOptions().match("import:movie:*").count(1000).build())) {
@@ -55,7 +54,6 @@ public class MovieService {
         }
 
         var startTime = Instant.now();
-        // First phase: Load all movie data in parallel (no API calls here)
         List<Movie> movies = allMovieKeys.parallelStream()
                 .map(key -> {
                     try {
@@ -72,50 +70,36 @@ public class MovieService {
                 .filter(Objects::nonNull)
                 .collect(Collectors.toList());
 
-        // Second phase: Save with optimized concurrency
         if (!movies.isEmpty()) {
             log.info("Loaded {} records into memory. Saving them all...", movies.size());
-            int processors = Runtime.getRuntime().availableProcessors();
-            ExecutorService executor = Executors.newFixedThreadPool(processors * 2);
+            try (ExecutorService executor = Executors.newVirtualThreadPerTaskExecutor()) {
+                final int batchSize = 500;
+                List<CompletableFuture<Void>> futures = new ArrayList<>();
+                AtomicInteger savedCounter = new AtomicInteger(0);
 
-            final int batchSize = 500;
-            List<CompletableFuture<Void>> futures = new ArrayList<>();
-            AtomicInteger savedCounter = new AtomicInteger(0);
+                for (int i = 0; i < movies.size(); i += batchSize) {
+                    int end = Math.min(i + batchSize, movies.size());
+                    List<Movie> batch = movies.subList(i, end);
 
-            for (int i = 0; i < movies.size(); i += batchSize) {
-                int end = Math.min(i + batchSize, movies.size());
-                List<Movie> batch = movies.subList(i, end);
-
-                CompletableFuture<Void> future = CompletableFuture.runAsync(() -> {
-                    try {
-                        movieRepository.saveAll(batch);
-                        int totalSaved = savedCounter.addAndGet(batch.size());
-                        if (totalSaved % 500 == 0 || totalSaved == movies.size()) {
-                            double percentComplete = (totalSaved * 100.0) / movies.size();
-                            log.info("Saved {}/{} movies ({}%)",
-                                    totalSaved, movies.size(),
-                                    String.format("%.1f", percentComplete));
+                    CompletableFuture<Void> future = CompletableFuture.runAsync(() -> {
+                        try {
+                            movieRepository.saveAll(batch);
+                            int totalSaved = savedCounter.addAndGet(batch.size());
+                            if (totalSaved % 500 == 0 || totalSaved == movies.size()) {
+                                double percentComplete = (totalSaved * 100.0) / movies.size();
+                                log.info("Saved {}/{} movies ({}%)",
+                                        totalSaved, movies.size(),
+                                        String.format("%.1f", percentComplete));
+                            }
+                        } catch (Exception ex) {
+                            log.error("Error saving batch: {}", ex.getMessage(), ex);
                         }
-                    } catch (Exception ex) {
-                        log.error("Error saving batch: {}", ex.getMessage(), ex);
-                    }
-                }, executor);
+                    }, executor);
 
-                futures.add(future);
-            }
-
-            // Wait for all futures to complete
-            CompletableFuture.allOf(futures.toArray(new CompletableFuture[0])).join();
-
-            // Shutdown the executor
-            executor.shutdown();
-            try {
-                if (!executor.awaitTermination(60, TimeUnit.SECONDS)) {
-                    executor.shutdownNow();
+                    futures.add(future);
                 }
-            } catch (InterruptedException ie) {
-                executor.shutdownNow();
-                Thread.currentThread().interrupt();
+
+                CompletableFuture.allOf(futures.toArray(new CompletableFuture[0])).join();
             }
         }
 
