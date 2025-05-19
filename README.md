@@ -242,7 +242,9 @@ public interface MovieDataRepository extends RedisDocumentRepository<MovieData, 
 
 #### ⏰ Estimated time: **10 minutes**
 
-You will create a persistence layer for the generated data. This will allow you to access data from Java and perform operations on it. You will create a new domain entity that will represent the generated data in Redis. This class will leverage [Spring Data](https://spring.io/projects/spring-data) and [Redis OM for Java](https://redis.io/docs/latest/integrate/redisom-for-java/). Your instructor will explain what each annotation does. Create a new Java class called `Movie` in the package `io.redis.movies.searcher.core.domain`. Note are mapping this domain entity to a index that doesn't exist yet. This index will be created when you run the application for the first time. Create a Java class called `Movie` in the package `io.redis.movies.searcher.core.domain`. This implementation holds the logic about how embeddings will be created. Your instructor will explain how this works, and how you can customize this.
+You will create a persistence layer for the generated data. This will allow you to access data from Java and perform operations on it. You will create a new domain entity that will represent the generated data in Redis. This class will leverage [Spring Data](https://spring.io/projects/spring-data) and [Redis OM for Java](https://redis.io/docs/latest/integrate/redisom-for-java/). Your instructor will explain what each annotation does. Create a new Java class called `Movie` in the package `io.redis.movies.searcher.core.domain`.
+
+Note are mapping this domain entity to a index that doesn't exist yet. This index will be created when you run the application for the first time. Create a Java class called `Movie` in the package `io.redis.movies.searcher.core.domain`. This implementation holds the logic about how embeddings will be created. Your instructor will explain how this works, and how you can customize this.
 
 ```java
 package io.redis.movies.searcher.core.domain;
