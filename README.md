@@ -183,6 +183,10 @@ In this section, you will implement a functionality that will prepare the datase
 
 #### ⏰ Estimated time: **10 minutes**
 
+In the previous section, you imported the dataset into Redis. The dataset is stored in Redis as JSON documents. In this section, you will create a persistence layer for the existing data. This will allow you to access the data from Java and perform operations on it.
+
+You will start by creating a domain entity that will represent the current data in Redis. This class will leverage Spring Data and Redis OM for Spring. Your instructor will explain what each annotation does. Create a new Java class called `MovieData` in the package 'io.redis.movies.searcher.data.domain'.
+
 ```java
 package io.redis.movies.searcher.data.domain;
 
