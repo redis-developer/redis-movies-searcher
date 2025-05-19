@@ -980,12 +980,14 @@ Now that you have your database created, you can replicate the entire dataset fr
 ```bash
 riot replicate \
   redis://localhost:6379 \
-  redis://default:password@public-endpoint
+  redis://default:password@public-endpoint-with-port
 ```
 
 ### Task 4: Point the application to the cloud
 
 #### ⏰ Estimated time: **10 minutes**
+
+You need to make some changes in your application so that it points to the new database. You will need to update the `application.properties` file with the new connection details. The connection details will come from the Redis URL you copied earlier. Please make sure to export the following environment variables with the connection details from your Redis Cloud database. You can do this by running the commands below in your terminal.
 
 ```bash
 export REDIS_HOST=public-endpoint-without-port
@@ -1003,6 +1005,10 @@ export REDIS_USERNAME=default
 export REDIS_PASSWORD=password
 ```
 
+Edit the `src/main/resources/application.properties` file and update it with the new connection details. The file should look like this:
+
+```properties
+
 ```java
 server.port=8081
 
@@ -1016,6 +1022,8 @@ redis.om.spring.ai.enabled=true
 redis.om.spring.ai.embedding-batch-size=2048
 redis.om.spring.repository.query.limit=50000
 ```
+
+You are ready to execute the application. You should be able to use the application just as before. The only difference is that now the data is stored in the cloud.
 
 ```bash
 mvn spring-boot:run
