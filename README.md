@@ -42,7 +42,7 @@ Once you have a copy of the repository locally, you can open it in your favorite
 mvn clean package
 ```
 
-Before running the application, you need to start Redis and Redis Insight. You can do this by running the following command:
+Before running the application, you need to start the application dependencies. This include the frontend layer, the Redis database, and a browser version of Redis Insight. You can do this by running the following command:
 
 ```bash
 docker compose up -d
