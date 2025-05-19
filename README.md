@@ -742,13 +742,13 @@ public class SearchService {
 }
 ```
 
-Note that we only execute the VSS search whenever the FTS search does not return enough results. This is done to optimize the search process as FTS searches are faster than VSS ones. The VSS search is done using the `knn()` operation, which is part of the Redis Query Engine implementation. This operation allows you to perform a [K-Nearest Neighbors](https://redis.io/docs/latest/develop/interact/search-and-query/query/vector-search/) search on the vector field.
+Note that we only execute the VSS search whenever the FTS search does not return enough results. This is done to optimize the search process as FTS searches are faster than VSS ones. The VSS search is implemented with the `knn()` operation, which is part of the Redis Query Engine implementation. This operation allows you to perform a [K-Nearest Neighbors](https://redis.io/docs/latest/develop/interact/search-and-query/query/vector-search/) search on the vector field.
 
 ### Task 3: Optimizing the Vector Similarity Search
 
 #### ⏰ Estimated time: **15 minutes**
 
-The current implementation of the `searchMovies()` method uses the `getQueryEmbeddingAsByteArray()` method to create the embedding for the query. This method uses an `Embedder` instance to create the embedding. However, this is not efficient because it creates a new embedding every time the method is called. You can optimize this by caching the embeddings for the keywords used in the search. To support this caching process, create a new Java class called `Keyword` in the package `io.redis.movies.searcher.core.domain` and implement as shown below. 
+The current implementation of the `searchMovies()` method uses the `getQueryEmbeddingAsByteArray()` method to create the embedding for the query. It uses an `Embedder` instance to create the embedding. However, this is not efficient because it creates a new embedding every time the method is called. You can optimize this by caching the embeddings for the keywords used in the search. To support this caching process, create a new Java class called `Keyword` in the package `io.redis.movies.searcher.core.domain` and implement as shown below. 
 
 ```java
 package io.redis.movies.searcher.core.domain;
