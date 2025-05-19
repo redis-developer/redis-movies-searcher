@@ -333,7 +333,7 @@ public interface MovieRepository extends RedisEnhancedRepository<Movie, Integer>
 }
 ```
 
-You need to enable the repositories with Spring Boot. To do this, use the annotations `@EnableRedisDocumentRepositories` and `@EnableRedisEnhancedRepositories` in the main class of the application. Edit the Java class `io.redis.movies.searcher.RedisMoviesSearcher.java` and add these annotations.
+You need to enable the two repositories created with Spring Boot. In order to do this, you will need to use the annotations `@EnableRedisDocumentRepositories` and `@EnableRedisEnhancedRepositories` in the main class of the app. Edit the Java class `io.redis.movies.searcher.RedisMoviesSearcher.java` and add these annotations.
 
 ```java
 package io.redis.movies.searcher;
