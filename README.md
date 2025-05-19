@@ -551,7 +551,7 @@ In this section, you will implement the search functionality in the application.
 
 #### ⏰ Estimated time: **15 minutes**
 
-With the movies properly stored at Redis, you can now implement the search functionality. You will edit the Java class `io.redis.movies.searcher.core.service.SearchService` and change the implementation of the method `searchMovies()` as shown below.
+With the movies properly stored at Redis, you can now implement the search functionality. You will edit the Java class `io.redis.movies.searcher.core.service.SearchService` and change the implementation as shown below.
 
 ```java
 package io.redis.movies.searcher.core.service;
@@ -623,11 +623,13 @@ public class SearchService {
 }
 ```
 
-With this implementation, you are going to be able to search for movies by their title or by their actors. The search will return a list of movies that match the search criteria. The search is done using the `EntityStream` class, which is part of the Redis OM for Java library. This class allows you to perform searches on Redis data using a fluent API. Your instructor will explain more details about this powerful API.
+With this implementation, you are going to be able to search for movies by their title or by their actors. The search will return a list of movies that match the search criteria. The search is done using the `EntityStream` class, which is part of the Redis OM for Java library. This class allows you to perform searches on Redis data using a fluent API. Your instructor will explain more details about this powerful API. Execute the application and try to search for movies.
 
 ### Task 2: Implementing the Vector Similarity Search
 
 #### ⏰ Estimated time: **30 minutes**
+
+The current implementation of the `searchMovies()` method uses full-text search (FTS) to search for movies. This is a good start, but you can improve the search by using vector similarity search (VSS) as well. VSS allows you to search for movies based on their plot, using embeddings to represent the plot in a vector space. This will allow you to find movies using the plot field even if the words you use are not exactly the same as the words in the plot. Edit the Java class `io.redis.movies.searcher.core.service.SearchService` and change the implementation as shown below.
 
 ```java
 package io.redis.movies.searcher.core.service;
@@ -740,9 +742,13 @@ public class SearchService {
 }
 ```
 
+Note that we only execute the VSS search if the FTS search does not return enough results. This is done to optimize the search process and avoid unnecessary computations. The VSS search is done using the `knn()` operation, which is part of the Redis Query Engine implementation. This operation allows you to perform a k-nearest neighbors search on the vector field. Execute the application and try to search for movies.
+
 ### Task 3: Optimizing the Vector Similarity Search
 
 #### ⏰ Estimated time: **15 minutes**
+
+The current implementation of the `searchMovies()` method uses the `getQueryEmbeddingAsByteArray()` method to create the embedding for the query. This method uses an `Embedder` instance to create the embedding. However, this is not efficient because it creates a new embedding every time the method is called. You can optimize this by caching the embeddings for the keywords used in the search. To support this caching process, create a new Java class called `Keyword` in the package `io.redis.movies.searcher.core.domain` and implement as shown below. 
 
 ```java
 package io.redis.movies.searcher.core.domain;
@@ -788,6 +794,8 @@ public class Keyword {
 }
 ```
 
+Along with the domain entity, you will need a repository implementation to perform data operations. Create a new Java interface called `KeywordRepository` in the package `io.redis.movies.searcher.core.repository`.
+
 ```java
 package io.redis.movies.searcher.core.repository;
 
@@ -797,6 +805,8 @@ import io.redis.movies.searcher.core.domain.Keyword;
 public interface KeywordRepository extends RedisEnhancedRepository<Keyword, String> {
 }
 ```
+
+Finally, you need to update the implementation of the SearchService to cache keywords appropriately. Edit the Java class `io.redis.movies.searcher.core.service.SearchService` and change the implementation as shown below.
 
 ```java
 package io.redis.movies.searcher.core.service;
