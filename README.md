@@ -120,8 +120,6 @@ FT.CREATE imported_movies_index ON JSON PREFIX 1 "import:movie:" SCHEMA
 
 To create this index, go to Redis Insight, and access the **Workbench** tab. Then, paste the command into the query editor and click on the **Run** button. You should see the index being created.
 
-```bash
-
 ![ri-create-idx.png](images/ri-create-idx.png)
 
 At any time, you can verify the details of the index by running the command below. This will show you the details of the index, including the fields and their types.
