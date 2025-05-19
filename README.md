@@ -551,6 +551,8 @@ In this section, you will implement the search functionality in the application.
 
 #### ⏰ Estimated time: **15 minutes**
 
+With the movies properly stored at Redis, you can now implement the search functionality. You will edit the Java class `io.redis.movies.searcher.core.service.SearchService` and change the implementation of the method `searchMovies()` as shown below.
+
 ```java
 package io.redis.movies.searcher.core.service;
 
@@ -620,6 +622,8 @@ public class SearchService {
 
 }
 ```
+
+With this implementation, you are going to be able to search for movies by their title or by their actors. The search will return a list of movies that match the search criteria. The search is done using the `EntityStream` class, which is part of the Redis OM for Java library. This class allows you to perform searches on Redis data using a fluent API. Your instructor will explain more details about this powerful API.
 
 ### Task 2: Implementing the Vector Similarity Search
 
