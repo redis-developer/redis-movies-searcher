@@ -748,7 +748,7 @@ Note that we only execute the VSS search whenever the FTS search does not return
 
 #### ⏰ Estimated time: **15 minutes**
 
-The current implementation of the `searchMovies()` method uses the `getQueryEmbeddingAsByteArray()` method to create the embedding for the query. It uses an `Embedder` instance to create the embedding. However, this is not efficient because it creates a new embedding every time the method is called. You can optimize this by caching the embeddings for the keywords used in the search. To support this caching process, create a new Java class called `Keyword` in the package `io.redis.movies.searcher.core.domain` and implement as shown below. 
+The current implementation of the `searchMovies()` method uses the `getQueryEmbeddingAsByteArray()` method to create the embedding for the query. It uses an `Embedder` instance to create the embedding. However, this is not efficient because it creates a new embedding every time the method is called. You can further optimize this by caching the embeddings for the keywords used in the search. To support this caching process, create a new Java class called `Keyword` in the package `io.redis.movies.searcher.core.domain` and implement as shown below. 
 
 ```java
 package io.redis.movies.searcher.core.domain;
