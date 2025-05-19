@@ -975,6 +975,8 @@ Make sure to click in the eyes icon before copying the Redis URL. It will allow 
 
 #### ⏰ Estimated time: **10 minutes**
 
+Now that you have your database created, you can replicate the entire dataset from your local database to the cloud. You will use the `riot` utility to do this. The command is similar to the one you used to load the JSON file into your local database. The `replicate` option from RIOT allows you to replicate data from one Redis database to another. In this case, the source database will be your local Redis, and the target database will be the one running with Redis Cloud.
+
 ```bash
 riot replicate \
   redis://localhost:6379 \
