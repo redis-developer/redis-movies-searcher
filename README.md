@@ -64,7 +64,7 @@ You should see the following screen:
 
 You can type anything you want in the search box. You should see the same result coming back. This is the MVP of the application, and the result is currently hard-coded.
 
-Now open Redis Insight and connect to the Redis instance running on your machine. You can do this by clicking on the "Add Redis Database" button and entering the following information: `redis://default@127.0.0.1:6379`
+Now open Redis Insight and connect to the Redis instance running on your machine. You can do this by clicking on the **Add Redis Database** button and entering the following information: `redis://default@localhost:6379`
 
 ![ri-start.png](images/ri-start.png)
 
