@@ -118,7 +118,7 @@ FT.CREATE imported_movies_index ON JSON PREFIX 1 "import:movie:" SCHEMA
   $.id AS id NUMERIC SORTABLE UNF
 ```
 
-To create this index, go to Redis Insight, and access the Workbench tab. Then, paste the command into the query editor and click on the **Run** button. You should see the index being created.
+To create this index, go to Redis Insight, and access the **Workbench** tab. Then, paste the command into the query editor and click on the **Run** button. You should see the index being created.
 
 ```bash
 
@@ -132,7 +132,7 @@ FT.INFO 'imported_movies_index'
 
 ![ri-inspect-idx.png](images/ri-inspect-idx.png)
 
-One cool aspect of working with indexed datasets with Redis Insight is the ability to search for keys using the UI. Go back to the the Browser tab and select the option `Search by Values of Keys`. Then select the index you created in the drop down box near it. In the search box, try to search for all movies that contain the word `Matrix` for example.
+One cool aspect of working with indexed datasets with Redis Insight is the ability to search for keys using the UI. Go back to the **Browser** tab and select the option **Search by Values of Keys**. Then select the index you created in the drop down box near it. In the search box, try to search for all movies that contain the word `Matrix` for example.
 
 ![ri-search-matrix.png](images/ri-search-matrix.png)
 
