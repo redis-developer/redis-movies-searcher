@@ -744,7 +744,9 @@ public class SearchService {
 }
 ```
 
-Note that we only execute the VSS search whenever the FTS search does not return enough results. This is done to optimize the search process as FTS searches are faster than VSS ones. The VSS search is implemented with the `knn()` operation, which is part of the Redis Query Engine implementation. This operation allows you to perform a [K-Nearest Neighbors](https://redis.io/docs/latest/develop/interact/search-and-query/query/vector-search/) search on the vector field.
+Note that we only execute the VSS search whenever the FTS search does not return enough results. This is done to optimize the search process as FTS searches are faster than VSS ones. The VSS search is implemented with the `knn()` operation, which is part of the Redis Query Engine implementation. This operation allows you to perform a [K-Nearest Neighbors](https://redis.io/docs/latest/develop/interact/search-and-query/query/vector-search/) search on the vector field. For example, you can search for a movie using `Dude who teaches rock` and there should be an entry pointing to the movie `The School of Rock`, along with other movies about the same topic. 
+
+![vss-search.png](images/vss-search.png)
 
 ### Task 3: Optimizing the Vector Similarity Search
 
