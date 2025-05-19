@@ -931,7 +931,11 @@ In this section, you will replace your local database with one running in the cl
 
 #### ⏰ Estimated time: **5 minutes**
 
+If you don't have one already, you must create a new account with Redis Cloud. Redis Cloud is a service offering from Redis that allows you to run Redis as a fully managed service. It is compatible with different cloud providers, such as AWS, Google Cloud, and Azure. Use the following link to create your account. 
+
 https://redis.io/try-free
+
+You don't need to register a credit card to create your account. YOu can enroll using your GitHub and Google accounts. Once you create your account, you will be redirected to the Redis Cloud console. 
 
 ![rc-welcome.png](images/rc-welcome.png)
 
