@@ -625,6 +625,8 @@ public class SearchService {
 
 With this implementation, you are going to be able to search for movies by their title or by their actors. The search will return a list of movies that match the search criteria. The search is done using the `EntityStream` class, which is part of the Redis OM for Java library. This class allows you to perform searches on Redis data using a fluent API. Your instructor will explain more details about this powerful API. Go ahead and execute the application. You can search for movies by their title or by their actors. For example, you can search for movies with the title `Matrix` or with the actor `Keanu Reeves`. You should see the results being displayed on the screen.
 
+![jnation.png](images/jnation.png)
+
 ### Task 2: Implementing the Vector Similarity Search
 
 #### ⏰ Estimated time: **30 minutes**
