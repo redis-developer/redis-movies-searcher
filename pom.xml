@@ -47,7 +47,12 @@
         <dependency>
             <groupId>com.redis.om</groupId>
             <artifactId>redis-om-spring</artifactId>
-            <version>0.9.11</version>
+            <version>1.0.0-RC2</version>
+        </dependency>
+        <dependency>
+            <groupId>com.redis.om</groupId>
+            <artifactId>redis-om-spring-ai</artifactId>
+            <version>1.0.0-RC2</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
