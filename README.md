@@ -30,7 +30,7 @@ It is recommended to use IDEs like [VS Code](https://code.visualstudio.com), [In
 
 #### ⏰ Estimated time: **20 minutes**
 
-Your first step is cloning the repository and building the application. Make sure to clone the repository with the branch `jnation-2025-workshop`:
+Your first step is cloning the repository and building the application. Make sure to clone the repository with the branch `springio-2025-workshop`:
 
 ```bash
 git clone https://github.com/redis-developer/redis-movies-searcher.git -b springio-2025-workshop
