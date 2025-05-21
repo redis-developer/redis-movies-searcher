@@ -1,4 +1,4 @@
-# Building Context-Aware Applications with Java, Vector Searches, and Redis
+# Building Context-Aware Applications with Spring, Vector Searches, and Redis
 
 Welcome to Spring I/O 2025 👋🏻
 
