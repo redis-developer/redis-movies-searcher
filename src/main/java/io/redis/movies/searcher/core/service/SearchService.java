@@ -21,9 +21,9 @@ public class SearchService {
         final int resultLimit = (limit == null) ? 3 : limit;
 
         List<Movie> movies = List.of(new Movie(
-                1, "Welcome to JNation", 2025,
+                1, "Welcome to Spring I/O", 2025,
                 "Building Context-Aware Applications with Java, Vector Searches, and Redis",
-                "2025-05-28", 10.0, List.of("Ricardo Ferreira")));
+                "2025-05-28", 10.0, List.of("Brian Sam-Bodden", "Ricardo Ferreira")));
 
         return new Pair<>(convertToDTOs(movies), ResultType.NONE);
     }
