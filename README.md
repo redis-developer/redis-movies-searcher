@@ -33,7 +33,7 @@ It is recommended to use IDEs like [VS Code](https://code.visualstudio.com), [In
 Your first step is cloning the repository and building the application. Make sure to clone the repository with the branch `jnation-2025-workshop`:
 
 ```bash
-git clone https://github.com/redis-developer/redis-movies-searcher.git -b jnation-2025-workshop
+git clone https://github.com/redis-developer/redis-movies-searcher.git -b springio-2025-workshop
 ```
 
 Once you have a copy of the repository locally, you can open it in your favorite IDE. The project is a standard Maven project, so you can import it as a Maven project. Go ahead and run a Maven build so the dependencies are downloaded and you can verify if everything is working as expected. Please note that depending of the internet connection, this may take a while to complete.
