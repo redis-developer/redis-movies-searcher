@@ -1,10 +1,10 @@
 # Building Context-Aware Applications with Java, Vector Searches, and Redis
 
-Welcome to JNation 2025 👋🏻
+Welcome to Spring I/O 2025 👋🏻
 
-![jnation.png](images/jnation.png)
+![springio.png](images/springio.png)
 
-On behalf of the [JNation](https://jnation.pt) organizers, it's my genuine pleasure to be your instructor today. My name is [Ricardo Ferreira](https://github.com/riferrei), and I lead the developer relations team at [Redis](https://redis.io).
+On behalf of the [Spring I/O](https://2025.springio.net/) organizers, it's our genuine pleasure to be your instructors today. Our names are [Brian Sam-Bodden](https://github.com/bsbodden) and [Ricardo Ferreira](https://github.com/riferrei), and we work for [Redis](https://redis.io).
 
 In this workshop, you will learn how to design and develop an application that makes use of vector databases to handle semantic search. You will learn how to prepare the dataset for storage, how to process JSON documents and generate embeddings, how to index them into Redis, and how to implement searches and aggregations on top of it. You must be comfortable with [Java](https://www.java.com/en) and have a basic understanding of [Redis](https://redis.io/open-source).
 
