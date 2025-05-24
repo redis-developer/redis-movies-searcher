@@ -22,9 +22,9 @@ This workshop requires the following dependencies to be installed on your machin
   - [JDK 21+](https://docs.aws.amazon.com/corretto/latest/corretto-21-ug/downloads-list.html)
   - [Docker](https://www.docker.com/get-started)
   - [RIOT](https://redis.github.io/riot/#_install)
+  - [Redis Insight](https://redis.io/docs/latest/operate/redisinsight/install/install-on-desktop/) (If you're a Mac user, you can install it using [Homebrew](https://formulae.brew.sh/cask/redis-insight))
 - Recommended
   - [Maven 3.9+](https://maven.apache.org/download.cgi)
-  - [Redis Insight](https://redis.io/docs/latest/operate/redisinsight/install/install-on-desktop/) (If you're a Mac user, you can install it using [Homebrew](https://formulae.brew.sh/cask/redis-insight))
 
 Please use IDEs like [VS Code](https://code.visualstudio.com), [IntelliJ IDEA](https://www.jetbrains.com/idea/) or [Eclipse](https://www.eclipse.org/downloads/packages/) to work with the code. As a Java developer, you can use any IDE you feel comfortable with. Please make sure to have one installed before proceeding.
 
