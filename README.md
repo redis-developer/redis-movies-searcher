@@ -175,7 +175,7 @@ You may see more than one movie with this title. Select the one from `2017`. To 
 JSON.SET import:movie:1321 $.actors '["Ben Affleck", "Gal Gadot", "Jason Momoa", "Henry Cavill", "Ezra Miller"]'
 ```
 
-Like this glitch, there may be other. Please spend some time finding fields with no values, or perhaps with wrong values. Your instructor will likely explain how to do this efficiently using [Redis Copilot](https://redis.io/docs/latest/develop/tools/insight/copilot-faq/), which is a feature from Redis Insight.
+Like this glitch, there may be others. Please spend some time finding fields with no values, or perhaps with wrong values. Your instructor will likely explain how to do this efficiently using [Redis Copilot](https://redis.io/docs/latest/develop/tools/insight/copilot-faq/), which is a feature from Redis Insight.
 
 ![ri-copilot.png](images/ri-copilot.png)
 
