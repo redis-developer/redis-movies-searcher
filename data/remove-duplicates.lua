@@ -1,4 +1,4 @@
-local result = redis.call('FT.AGGREGATE', 'imported_movies_index', '*',
+local result = redis.call('FT.AGGREGATE', 'movie_index', '*',
   'LOAD', '2', '@title', '@id',
   'GROUPBY', '1', '@title',
   'REDUCE', 'COUNT', '0', 'AS', 'count',
@@ -24,7 +24,7 @@ while index <= #result do
     local ids_list = group[ids_idx + 1]
     -- Skip the first ID, delete the rest
     for i = 2, #ids_list do
-      local key_name = 'import:movie:' .. ids_list[i]
+      local key_name = 'movie:' .. ids_list[i]
       redis.call('DEL', key_name)
       deletion_count = deletion_count + 1
     end

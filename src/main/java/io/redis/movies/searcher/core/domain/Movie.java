@@ -3,7 +3,6 @@ package io.redis.movies.searcher.core.domain;
 import com.redis.om.spring.annotations.*;
 import com.redis.om.spring.indexing.DistanceMetric;
 import com.redis.om.spring.indexing.VectorType;
-import io.redis.movies.searcher.data.domain.MovieData;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.redis.core.RedisHash;
 import redis.clients.jedis.search.schemafields.VectorField;
@@ -11,6 +10,7 @@ import redis.clients.jedis.search.schemafields.VectorField;
 import java.util.List;
 
 @RedisHash("movie")
+@IndexingOptions(indexName = "movie_index")
 public class Movie {
 
     @Id
@@ -58,13 +58,6 @@ public class Movie {
         this.releaseDate = releaseDate;
         this.rating = rating;
         this.actors = actors;
-    }
-
-    public static Movie fromData(MovieData movieAsJSON) {
-        return new Movie(movieAsJSON.getId(), movieAsJSON.getTitle(),
-                movieAsJSON.getYear(), movieAsJSON.getPlot(),
-                movieAsJSON.getReleaseDate(), movieAsJSON.getRating(),
-                movieAsJSON.getActors());
     }
 
     public int getId() {

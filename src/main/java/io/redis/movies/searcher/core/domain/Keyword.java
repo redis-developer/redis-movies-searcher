@@ -8,6 +8,7 @@ import org.springframework.data.redis.core.RedisHash;
 import redis.clients.jedis.search.schemafields.VectorField;
 
 @RedisHash(value = "keyword")
+@IndexingOptions(indexName = "keyword_index")
 public class Keyword {
 
     @Id

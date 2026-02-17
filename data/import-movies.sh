@@ -6,5 +6,5 @@ riot file-import \
     --proc plot="info.plot" \
     --proc releaseDate="info.release_date" \
     --proc rating="info.rating" \
-    --proc actors="remove('info').actors" \
-    movies.json json.set --keyspace import:movie --key id
+    --proc actors="info.actors != null ? remove('info').actors.stream().collect(T(java.util.stream.Collectors).joining('|')) : ''" \
+    movies.json hset --keyspace movie --key id
